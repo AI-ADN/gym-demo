@@ -1,0 +1,758 @@
+import type { ClassId, EquipmentId, PlanId, SectionId, SpaceId, TeamId } from "./site";
+
+export type Locale = "es" | "en";
+export const locales: Locale[] = ["es", "en"];
+
+const es = {
+  meta: {
+    title: "PULSO Athletic Club — Concepto demostrativo",
+    description:
+      "Demo de sitio para PULSO Athletic Club, un gimnasio ficticio en Monterrey: espacios, equipamiento, equipo, clases y planes de muestra.",
+  },
+  common: {
+    skip: "Saltar al contenido",
+    demoBadge: "Demo",
+    demoConcept: "Concepto demostrativo · datos ficticios",
+    languageLabel: "Idioma",
+    close: "Cerrar",
+    backHome: "Volver al inicio",
+    included: "Incluido",
+    notIncluded: "No incluido",
+  },
+  nav: {
+    label: "Principal",
+    sections: {
+      nosotros: "Nosotros",
+      equipamiento: "Equipamiento",
+      instalaciones: "Instalaciones",
+      equipo: "Equipo",
+      clases: "Clases",
+      paquetes: "Paquetes",
+      ubicaciones: "Ubicaciones",
+      preguntas: "Preguntas",
+      contacto: "Contacto",
+    } satisfies Record<SectionId, string>,
+    more: "Más",
+    menuOpen: "Abrir menú",
+    menuClose: "Cerrar menú",
+    cta: "Conoce PULSO",
+    home: "PULSO Athletic Club, inicio",
+  },
+  hero: {
+    titleLines: ["Tu energía.", "Tu siguiente", "nivel."],
+    lead: "Fuerza, cardio, entrenamiento funcional y clases en un solo club. Empieza con una orientación inicial y elige cuánto acompañamiento quieres.",
+    primary: "Conoce PULSO",
+    secondary: "Ver paquetes",
+    pause: "Pausar video",
+    play: "Reproducir video",
+    videoLabel: "Video de fondo: personas entrenando con trineo, sentadilla y peso muerto.",
+    photoAlt: "Sala de fuerza con racks, plataformas y mancuernas frente a ventanales al atardecer.",
+    scroll: "Desliza",
+  },
+  about: {
+    eyebrow: "Nosotros",
+    manifesto:
+      "En PULSO entrenas con claridad: reconoces cada espacio, entiendes tu plan y eliges cuánto acompañamiento necesitas para dar tu siguiente paso.",
+    imageAlt: "Entrenadora orientando a un socio que sostiene una kettlebell en posición de sentadilla.",
+    principles: [
+      {
+        title: "Empieza con orientación",
+        text: "Todos los planes incluyen una orientación inicial de 30 minutos para conocer el equipo y los espacios, aunque nunca hayas entrenado.",
+      },
+      {
+        title: "Entrena con variedad",
+        text: "Máquinas guiadas, peso libre, cardio, funcional, movilidad y clases grupales en una misma sede.",
+      },
+      {
+        title: "Elige tu acompañamiento",
+        text: "Desde entrenamiento por tu cuenta hasta revisiones mensuales de rutina y sesiones personales con el plan Integral.",
+      },
+    ],
+  },
+  equipment: {
+    eyebrow: "Equipamiento",
+    title: "Equipo para cada forma de entrenar",
+    lead: "Explora las cuatro áreas de equipo del club.",
+    note: "Equipamiento conceptual: sin marcas, modelos ni cantidades confirmadas.",
+    tabsLabel: "Categorías de equipamiento",
+    items: {
+      guiada: {
+        name: "Fuerza guiada",
+        text: "Máquinas que guían el movimiento para trabajar cada grupo muscular con control.",
+        list: ["Prensa de piernas", "Extensión de piernas", "Curl femoral", "Press de pecho", "Jalón al pecho", "Remo sentado"],
+        alt: "Mujer entrenando en una prensa de piernas junto a otras máquinas guiadas.",
+      },
+      libre: {
+        name: "Peso libre",
+        text: "Mancuernas, barras y discos para entrenar fuerza con libertad de movimiento.",
+        list: ["Mancuernas", "Bancos ajustables", "Barras", "Discos", "Rack de sentadillas"],
+        alt: "Rack de mancuernas, banco ajustable y barra con discos sobre piso de hule.",
+      },
+      cardio: {
+        name: "Cardio",
+        text: "Equipos para trabajar resistencia a tu ritmo, del calentamiento a sesiones completas.",
+        list: ["Caminadoras", "Bicicletas estáticas", "Elípticas", "Remadoras"],
+        alt: "Hombre entrenando en una remadora con bicicletas estáticas al fondo.",
+      },
+      funcional: {
+        name: "Funcional y movilidad",
+        text: "Herramientas para coordinación, potencia y movilidad.",
+        list: ["Kettlebells", "Bandas", "Cajones", "Cuerdas", "Colchonetas"],
+        alt: "Kettlebells, bandas elásticas, cajones de madera, cuerda y colchonetas.",
+      },
+    } satisfies Record<EquipmentId, { name: string; text: string; list: string[]; alt: string }>,
+  },
+  spaces: {
+    eyebrow: "Instalaciones",
+    title: "Seis espacios, un recorrido claro",
+    lead: "Cada zona tiene un propósito. Conócelas antes de tu primera visita.",
+    indexLabel: "Índice de espacios",
+    carouselLabel: "Espacios del club, desplázate horizontalmente",
+    items: {
+      fuerza: {
+        name: "Sala de fuerza",
+        text: "Racks, plataformas, barras y mancuernas para entrenar fuerza con espacio y orden.",
+        alt: "Sala de fuerza con racks, plataformas y filas de mancuernas.",
+      },
+      cardio: {
+        name: "Zona cardio",
+        text: "Caminadoras, bicicletas estáticas, elípticas y remadoras en un área dedicada.",
+        alt: "Zona cardio con caminadoras y bicicletas frente a ventanales.",
+      },
+      funcional: {
+        name: "Zona funcional",
+        text: "Espacio abierto con kettlebells, cajones y cuerdas para circuitos y trabajo de movimiento.",
+        alt: "Hombre trabajando con cuerdas de batalla en la zona funcional.",
+      },
+      estudio: {
+        name: "Estudio de clases",
+        text: "Sala con espejos para las clases grupales del horario publicado.",
+        alt: "Clase grupal haciendo zancadas con mancuernas frente a una instructora.",
+      },
+      vestidores: {
+        name: "Vestidores",
+        text: "Lockers, bancas y regaderas para llegar antes del trabajo o salir directo a tu día.",
+        alt: "Vestidor con lockers oscuros, banca de madera y regaderas al fondo.",
+      },
+      recepcion: {
+        name: "Recepción y descanso",
+        text: "El punto de llegada: recepción y una zona para esperar o descansar antes y después de entrenar.",
+        alt: "Recepción con mostrador de travertino, olivos y sala de estar con sillones de piel.",
+      },
+    } satisfies Record<SpaceId, { name: string; text: string; alt: string }>,
+  },
+  team: {
+    eyebrow: "Equipo",
+    title: "Quién te acompaña",
+    lead: "Cuatro roles para orientarte desde el primer día.",
+    note: "Perfiles ficticios de demostración, sin credenciales ni trayectoria acreditada.",
+    focusLabel: "Enfoque",
+    members: {
+      valeria: {
+        role: "Coordinadora de entrenamiento",
+        focus: "Fuerza, organización de rutinas, técnica y progresión según tu nivel.",
+        alt: "Retrato de Valeria Montes con chamarra deportiva negra en la sala de fuerza.",
+      },
+      diego: {
+        role: "Entrenador de piso",
+        focus: "Orientación inicial y familiarización con el equipamiento.",
+        alt: "Retrato de Diego Salas sonriendo, con ropa deportiva negra.",
+      },
+      renata: {
+        role: "Instructora de clases",
+        focus: "Entrenamiento funcional, movilidad y alternativas de intensidad.",
+        alt: "Retrato de Renata Cruz con los brazos cruzados en el gimnasio.",
+      },
+      mateo: {
+        role: "Entrenador personal",
+        focus: "Planificación individual, hábitos y ajustes de rutina.",
+        alt: "Retrato de Mateo Ríos con playera polo gris y brazos cruzados.",
+      },
+    } satisfies Record<TeamId, { role: string; focus: string; alt: string }>,
+  },
+  classes: {
+    eyebrow: "Clases",
+    title: "Clases para moverte con guía",
+    lead: "Incluidas en los planes Activo e Integral. Selecciona una clase para ubicarla en la semana.",
+    note: "Horario ilustrativo. No muestra disponibilidad en tiempo real y no permite reservar.",
+    weekLabel: "Semana de clases",
+    allLabel: "Todas",
+    filterLabel: "Resaltar clase",
+    minutes: "min",
+    weekend: "Sábado y domingo: sin clases en el horario publicado; el club abre para entrenamiento libre.",
+    days: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
+    daysShort: ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"],
+    items: {
+      "fuerza-base": { name: "Fuerza Base", focus: "Movimientos de fuerza con orientación", level: "Inicial y adaptable" },
+      funcional: { name: "Funcional", focus: "Fuerza, coordinación y movimiento", level: "Adaptable" },
+      movilidad: { name: "Movilidad", focus: "Explorar y trabajar el movimiento", level: "Todos los niveles" },
+      cycling: { name: "Cycling", focus: "Entrenamiento guiado en bicicleta", level: "Adaptable" },
+    } satisfies Record<ClassId, { name: string; focus: string; level: string }>,
+  },
+  plans: {
+    eyebrow: "Paquetes",
+    title: "Elige cuánto acompañamiento necesitas",
+    lead: "Tres planes mensuales. Todos empiezan con una orientación inicial.",
+    note: "Precios ilustrativos de demostración. Esta página no vende ni activa membresías.",
+    perMonth: "MXN al mes",
+    includes: "Incluye",
+    limits: "Límites",
+    cta: "Me interesa este plan",
+    selected: "Plan elegido",
+    compareShow: "Comparar planes en detalle",
+    compareCaption: "Comparación de planes",
+    feature: "Característica",
+    items: {
+      esencial: {
+        name: "Esencial",
+        summary: "Para entrenar por tu cuenta con todo el equipo.",
+        includes: [
+          "Fuerza, peso libre, cardio y funcional",
+          "Vestidores",
+          "Orientación inicial de 30 minutos",
+        ],
+        limits: "Orientación una vez al iniciar. Sin clases ni sesiones personales.",
+        tag: "",
+      },
+      activo: {
+        name: "Activo",
+        summary: "Suma clases grupales y una revisión mensual de tu rutina.",
+        includes: [
+          "Todo lo de Esencial",
+          "Clases del horario publicado",
+          "Revisión mensual de rutina de 30 minutos",
+        ],
+        limits: "Sin sesiones personales. Clases sujetas a aforo en una operación real.",
+        tag: "Incluye clases",
+      },
+      integral: {
+        name: "Integral",
+        summary: "Acompañamiento cercano con sesiones personales cada mes.",
+        includes: ["Todo lo de Activo", "Cuatro sesiones personales de 45 minutos al mes"],
+        limits: "Sesiones sujetas a agenda y no acumulables en este ejemplo.",
+        tag: "Incluye sesiones personales",
+      },
+    } satisfies Record<PlanId, { name: string; summary: string; includes: string[]; limits: string; tag: string }>,
+    comparison: {
+      areas: "Fuerza, peso libre, cardio y funcional",
+      lockers: "Vestidores con lockers y regaderas",
+      orientation: "Orientación inicial de 30 minutos",
+      classes: "Clases del horario publicado",
+      review: "Revisión mensual de rutina (30 min)",
+      personal: "Sesiones personales de 45 minutos",
+      personalValue: "4 al mes",
+    },
+  },
+  location: {
+    eyebrow: "Ubicaciones",
+    title: "PULSO Central",
+    lead: "Una sede conceptual en Monterrey.",
+    mapLabel: "Mapa ilustrativo · dirección ficticia",
+    mapAlt:
+      "Esquema ilustrativo de calles con un marcador para PULSO Central sobre Avenida Impulso. No representa una ubicación real.",
+    mapExpand: "Ampliar mapa",
+    mapDialogTitle: "Mapa ilustrativo de PULSO Central",
+    mapNote: "Esquema decorativo: no muestra calles reales, rutas ni tiempos de traslado.",
+    addressLabel: "Dirección",
+    address: ["Avenida Impulso 240", "Colonia Distrito Activo", "Monterrey, Nuevo León, México"],
+    addressNote: "Dirección ficticia del concepto.",
+    gymHours: "Horario del club",
+    receptionHours: "Recepción",
+    days: { weekdays: "Lunes a viernes", saturday: "Sábados", sunday: "Domingos" },
+    channels: "Canales de muestra",
+    channelsNote: "Correo y teléfono de muestra: no reciben mensajes ni llamadas.",
+    email: "Correo",
+    phone: "Teléfono",
+    whatsapp: "WhatsApp",
+    whatsappButton: "Escribir por WhatsApp",
+    whatsappDemo:
+      "Esta es una demo: el botón no abre ninguna conversación. En un sitio en operación conectaría con el WhatsApp del negocio. Para preparar una visita, usa el formulario.",
+    whatsappGoForm: "Ir al formulario",
+  },
+  faq: {
+    eyebrow: "Preguntas",
+    title: "Antes de tu primera visita",
+    items: [
+      {
+        q: "¿Puedo empezar sin experiencia?",
+        a: "Sí. Todos los planes incluyen una orientación inicial de 30 minutos para conocer el equipo y los espacios.",
+      },
+      {
+        q: "¿Qué planes incluyen clases?",
+        a: "Activo e Integral incluyen las clases del horario publicado: Fuerza Base, Funcional, Movilidad y Cycling. Esencial no incluye clases.",
+      },
+      {
+        q: "¿Hay entrenamiento personal?",
+        a: "El plan Integral incluye cuatro sesiones personales de 45 minutos al mes, sujetas a agenda y no acumulables en este ejemplo.",
+      },
+      {
+        q: "¿Qué hay en los vestidores?",
+        a: "Lockers y regaderas, disponibles en todos los planes.",
+      },
+      {
+        q: "¿Cuál es el horario?",
+        a: "El club abre de lunes a viernes de 06:00 a 23:00, sábados de 07:00 a 18:00 y domingos de 08:00 a 14:00. Recepción atiende de lunes a viernes de 08:00 a 20:00 y sábados de 09:00 a 14:00.",
+      },
+      {
+        q: "¿Puedo agendar una visita?",
+        a: "Puedes preparar una solicitud de visita con el formulario de contacto. Es una demo: la solicitud no se envía ni reserva un horario.",
+      },
+      {
+        q: "¿PULSO es un gimnasio real?",
+        a: "No. PULSO es un concepto demostrativo: precios, personas, horarios, dirección y canales de contacto son ficticios.",
+      },
+    ],
+  },
+  contact: {
+    eyebrow: "Contacto",
+    title: "Conoce PULSO",
+    lead: "Prepara una solicitud de visita, pregunta por los paquetes o déjanos una consulta.",
+    demoNotice: "Demo: usa datos de prueba. Esta solicitud no se enviará.",
+    privacyLink: "Cómo funciona esta demo",
+    fields: {
+      name: "Nombre",
+      email: "Correo electrónico",
+      reason: "Motivo",
+      plan: "Plan de interés",
+      planOptional: "opcional",
+      planNone: "Aún no lo sé",
+      message: "Mensaje",
+      messageOptional: "opcional",
+      messageHint: "Máximo 500 caracteres.",
+    },
+    reasons: { visita: "Visita", paquetes: "Paquetes", general: "Consulta general" },
+    submit: "Preparar solicitud",
+    errorsTitle: "Revisa estos campos:",
+    errors: {
+      required: "Este campo es obligatorio.",
+      tooShort: "Escribe al menos 2 caracteres.",
+      tooLong: "El texto es demasiado largo.",
+      invalidEmail: "Escribe un correo con el formato nombre@dominio.com.",
+    },
+    summaryTitle: "Solicitud preparada",
+    summaryText: "Ningún dato fue enviado ni guardado. Así quedaría tu solicitud:",
+    summaryEdit: "Editar solicitud",
+    summaryReset: "Empezar de nuevo",
+    summaryEmpty: "—",
+    counter: "caracteres",
+  },
+  footer: {
+    tagline: "Tu energía. Tu siguiente nivel.",
+    demo: "PULSO Athletic Club es un concepto ficticio creado para demostración. Precios, personas, horarios, dirección y canales no corresponden a un negocio real.",
+    privacy: "Privacidad",
+    hours: "Horario",
+    explore: "Explora",
+    credits: "Imágenes ilustrativas del concepto.",
+  },
+  privacy: {
+    title: "Privacidad",
+    updated: "Describe el funcionamiento actual de esta demo. No es un aviso legal revisado.",
+    sections: [
+      {
+        h: "Qué es este sitio",
+        p: [
+          "PULSO Athletic Club es un gimnasio ficticio. Este sitio es una demostración: no hay un negocio que reciba solicitudes, cobros ni reservas.",
+        ],
+      },
+      {
+        h: "Formulario de contacto",
+        p: [
+          "El formulario pide nombre, correo, motivo, plan opcional y mensaje opcional. Usa datos de prueba.",
+          "Al preparar la solicitud, los datos solo se validan y se muestran en tu navegador. No se envían a ningún servidor, no se guardan y desaparecen al recargar o cerrar la página.",
+        ],
+      },
+      {
+        h: "Preferencias guardadas",
+        p: [
+          "Si cambias de idioma, el navegador guarda tu preferencia (localStorage, clave «pulso-lang»).",
+        ],
+      },
+      {
+        h: "Sin cookies ni servicios externos",
+        p: [
+          "Este sitio no usa cookies, analítica, mapas externos ni servicios de terceros. Las fuentes tipográficas e imágenes se sirven desde el propio sitio.",
+          "Los canales de muestra (correo, teléfono y WhatsApp) no están conectados.",
+        ],
+      },
+    ],
+  },
+  notFound: {
+    title: "Esta página no existe",
+    text: "Puede que el enlace esté incompleto. Vuelve al inicio para seguir explorando PULSO.",
+  },
+};
+
+export type Dictionary = typeof es;
+
+const en: Dictionary = {
+  meta: {
+    title: "PULSO Athletic Club — Demo concept",
+    description:
+      "Website demo for PULSO Athletic Club, a fictitious gym in Monterrey: sample spaces, equipment, team, classes and plans.",
+  },
+  common: {
+    skip: "Skip to content",
+    demoBadge: "Demo",
+    demoConcept: "Demo concept · fictitious data",
+    languageLabel: "Language",
+    close: "Close",
+    backHome: "Back to home",
+    included: "Included",
+    notIncluded: "Not included",
+  },
+  nav: {
+    label: "Main",
+    sections: {
+      nosotros: "About",
+      equipamiento: "Equipment",
+      instalaciones: "Facilities",
+      equipo: "Team",
+      clases: "Classes",
+      paquetes: "Plans",
+      ubicaciones: "Location",
+      preguntas: "FAQ",
+      contacto: "Contact",
+    },
+    more: "More",
+    menuOpen: "Open menu",
+    menuClose: "Close menu",
+    cta: "Visit PULSO",
+    home: "PULSO Athletic Club, home",
+  },
+  hero: {
+    titleLines: ["Your energy.", "Your next", "level."],
+    lead: "Strength, cardio, functional training and classes in one club. Start with an onboarding session and choose how much guidance you want.",
+    primary: "Visit PULSO",
+    secondary: "See plans",
+    pause: "Pause video",
+    play: "Play video",
+    videoLabel: "Background video: people training with a sled, a squat and a deadlift.",
+    photoAlt: "Strength room with racks, platforms and dumbbells facing windows at sunset.",
+    scroll: "Scroll",
+  },
+  about: {
+    eyebrow: "About",
+    manifesto:
+      "At PULSO you train with clarity: you know every space, understand your plan and choose how much guidance you need for your next step.",
+    imageAlt: "Coach guiding a member who holds a kettlebell in a squat position.",
+    principles: [
+      {
+        title: "Start with guidance",
+        text: "Every plan includes a 30-minute onboarding session to get to know the equipment and spaces, even if you have never trained before.",
+      },
+      {
+        title: "Train with variety",
+        text: "Guided machines, free weights, cardio, functional training, mobility and group classes in one location.",
+      },
+      {
+        title: "Choose your support",
+        text: "From training on your own to monthly routine reviews and personal sessions with the Integral plan.",
+      },
+    ],
+  },
+  equipment: {
+    eyebrow: "Equipment",
+    title: "Equipment for every way to train",
+    lead: "Explore the club's four equipment areas.",
+    note: "Concept equipment: no confirmed brands, models or quantities.",
+    tabsLabel: "Equipment categories",
+    items: {
+      guiada: {
+        name: "Guided strength",
+        text: "Machines that guide the movement so you can train each muscle group with control.",
+        list: ["Leg press", "Leg extension", "Hamstring curl", "Chest press", "Lat pulldown", "Seated row"],
+        alt: "Woman training on a leg press next to other guided machines.",
+      },
+      libre: {
+        name: "Free weights",
+        text: "Dumbbells, barbells and plates to train strength with freedom of movement.",
+        list: ["Dumbbells", "Adjustable benches", "Barbells", "Plates", "Squat rack"],
+        alt: "Dumbbell rack, adjustable bench and loaded barbell on rubber flooring.",
+      },
+      cardio: {
+        name: "Cardio",
+        text: "Equipment to build endurance at your own pace, from warm-ups to full sessions.",
+        list: ["Treadmills", "Stationary bikes", "Ellipticals", "Rowers"],
+        alt: "Man training on a rowing machine with stationary bikes in the background.",
+      },
+      funcional: {
+        name: "Functional & mobility",
+        text: "Tools for coordination, power and mobility.",
+        list: ["Kettlebells", "Bands", "Plyo boxes", "Ropes", "Mats"],
+        alt: "Kettlebells, resistance bands, wooden boxes, a rope and mats.",
+      },
+    },
+  },
+  spaces: {
+    eyebrow: "Facilities",
+    title: "Six spaces, one clear flow",
+    lead: "Every area has a purpose. Get to know them before your first visit.",
+    indexLabel: "Spaces index",
+    carouselLabel: "Club spaces, scroll horizontally",
+    items: {
+      fuerza: {
+        name: "Strength room",
+        text: "Racks, platforms, barbells and dumbbells to train strength with room and order.",
+        alt: "Strength room with racks, platforms and rows of dumbbells.",
+      },
+      cardio: {
+        name: "Cardio area",
+        text: "Treadmills, stationary bikes, ellipticals and rowers in a dedicated area.",
+        alt: "Cardio area with treadmills and bikes facing large windows.",
+      },
+      funcional: {
+        name: "Functional area",
+        text: "Open space with kettlebells, boxes and ropes for circuits and movement work.",
+        alt: "Man working with battle ropes in the functional area.",
+      },
+      estudio: {
+        name: "Class studio",
+        text: "Mirrored room for the group classes on the published schedule.",
+        alt: "Group class doing lunges with dumbbells in front of an instructor.",
+      },
+      vestidores: {
+        name: "Locker rooms",
+        text: "Lockers, benches and showers so you can train before work or head straight into your day.",
+        alt: "Locker room with dark lockers, a wooden bench and showers in the back.",
+      },
+      recepcion: {
+        name: "Reception & lounge",
+        text: "Where you arrive: reception and an area to wait or rest before and after training.",
+        alt: "Reception with a travertine counter, olive trees and a leather-sofa lounge.",
+      },
+    },
+  },
+  team: {
+    eyebrow: "Team",
+    title: "Who trains with you",
+    lead: "Four roles to guide you from day one.",
+    note: "Fictitious demo profiles, with no stated credentials or track record.",
+    focusLabel: "Focus",
+    members: {
+      valeria: {
+        role: "Training coordinator",
+        focus: "Strength, routine planning, technique and level-based progression.",
+        alt: "Portrait of Valeria Montes in a black training jacket in the strength room.",
+      },
+      diego: {
+        role: "Floor coach",
+        focus: "Onboarding and getting familiar with the equipment.",
+        alt: "Portrait of Diego Salas smiling, in black training clothes.",
+      },
+      renata: {
+        role: "Class instructor",
+        focus: "Functional training, mobility and intensity options.",
+        alt: "Portrait of Renata Cruz with arms crossed in the gym.",
+      },
+      mateo: {
+        role: "Personal trainer",
+        focus: "Individual planning, habits and routine adjustments.",
+        alt: "Portrait of Mateo Ríos in a grey polo shirt with arms crossed.",
+      },
+    },
+  },
+  classes: {
+    eyebrow: "Classes",
+    title: "Classes to move with guidance",
+    lead: "Included in the Activo and Integral plans. Select a class to find it in the week.",
+    note: "Sample schedule. It does not show live availability and cannot be booked.",
+    weekLabel: "Weekly class schedule",
+    allLabel: "All",
+    filterLabel: "Highlight class",
+    minutes: "min",
+    weekend: "Saturday and Sunday: no classes on the published schedule; the club is open for open training.",
+    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    daysShort: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    items: {
+      "fuerza-base": { name: "Fuerza Base", focus: "Guided strength movements", level: "Beginner, adaptable" },
+      funcional: { name: "Funcional", focus: "Strength, coordination and movement", level: "Adaptable" },
+      movilidad: { name: "Movilidad", focus: "Exploring and working on movement", level: "All levels" },
+      cycling: { name: "Cycling", focus: "Guided indoor cycling", level: "Adaptable" },
+    },
+  },
+  plans: {
+    eyebrow: "Plans",
+    title: "Choose how much guidance you need",
+    lead: "Three monthly plans. All of them start with an onboarding session.",
+    note: "Sample demo prices. This page does not sell or activate memberships.",
+    perMonth: "MXN per month",
+    includes: "Includes",
+    limits: "Limits",
+    cta: "I'm interested in this plan",
+    selected: "Selected plan",
+    compareShow: "Compare plans in detail",
+    compareCaption: "Plan comparison",
+    feature: "Feature",
+    items: {
+      esencial: {
+        name: "Esencial",
+        summary: "Train on your own with all the equipment.",
+        includes: ["Strength, free weights, cardio and functional", "Locker rooms", "30-minute onboarding session"],
+        limits: "Onboarding once when you start. No classes or personal sessions.",
+        tag: "",
+      },
+      activo: {
+        name: "Activo",
+        summary: "Adds group classes and a monthly routine review.",
+        includes: ["Everything in Esencial", "Classes on the published schedule", "30-minute monthly routine review"],
+        limits: "No personal sessions. In a real operation, classes would depend on capacity.",
+        tag: "Includes classes",
+      },
+      integral: {
+        name: "Integral",
+        summary: "Close support with personal sessions every month.",
+        includes: ["Everything in Activo", "Four 45-minute personal sessions per month"],
+        limits: "Sessions depend on scheduling and do not roll over in this example.",
+        tag: "Includes personal sessions",
+      },
+    },
+    comparison: {
+      areas: "Strength, free weights, cardio and functional",
+      lockers: "Locker rooms with lockers and showers",
+      orientation: "30-minute onboarding session",
+      classes: "Classes on the published schedule",
+      review: "Monthly routine review (30 min)",
+      personal: "45-minute personal sessions",
+      personalValue: "4 per month",
+    },
+  },
+  location: {
+    eyebrow: "Location",
+    title: "PULSO Central",
+    lead: "A concept location in Monterrey.",
+    mapLabel: "Illustrative map · fictitious address",
+    mapAlt:
+      "Illustrative street diagram with a marker for PULSO Central on Avenida Impulso. It does not represent a real location.",
+    mapExpand: "Enlarge map",
+    mapDialogTitle: "Illustrative map of PULSO Central",
+    mapNote: "Decorative diagram: it does not show real streets, routes or travel times.",
+    addressLabel: "Address",
+    address: ["Avenida Impulso 240", "Colonia Distrito Activo", "Monterrey, Nuevo León, Mexico"],
+    addressNote: "Fictitious concept address.",
+    gymHours: "Club hours",
+    receptionHours: "Reception",
+    days: { weekdays: "Monday to Friday", saturday: "Saturdays", sunday: "Sundays" },
+    channels: "Sample channels",
+    channelsNote: "Sample email and phone: they do not receive messages or calls.",
+    email: "Email",
+    phone: "Phone",
+    whatsapp: "WhatsApp",
+    whatsappButton: "Message on WhatsApp",
+    whatsappDemo:
+      "This is a demo: the button does not open any conversation. On a live site it would connect to the business's WhatsApp. To prepare a visit, use the form.",
+    whatsappGoForm: "Go to the form",
+  },
+  faq: {
+    eyebrow: "FAQ",
+    title: "Before your first visit",
+    items: [
+      {
+        q: "Can I start with no experience?",
+        a: "Yes. Every plan includes a 30-minute onboarding session to get to know the equipment and spaces.",
+      },
+      {
+        q: "Which plans include classes?",
+        a: "Activo and Integral include the classes on the published schedule: Fuerza Base, Funcional, Movilidad and Cycling. Esencial does not include classes.",
+      },
+      {
+        q: "Is there personal training?",
+        a: "The Integral plan includes four 45-minute personal sessions per month, subject to scheduling and not rolling over in this example.",
+      },
+      {
+        q: "What is in the locker rooms?",
+        a: "Lockers and showers, available on every plan.",
+      },
+      {
+        q: "What are the opening hours?",
+        a: "The club is open Monday to Friday 06:00–23:00, Saturdays 07:00–18:00 and Sundays 08:00–14:00. Reception is staffed Monday to Friday 08:00–20:00 and Saturdays 09:00–14:00.",
+      },
+      {
+        q: "Can I schedule a visit?",
+        a: "You can prepare a visit request with the contact form. It is a demo: the request is not sent and does not book a time.",
+      },
+      {
+        q: "Is PULSO a real gym?",
+        a: "No. PULSO is a demo concept: prices, people, schedules, address and contact channels are fictitious.",
+      },
+    ],
+  },
+  contact: {
+    eyebrow: "Contact",
+    title: "Visit PULSO",
+    lead: "Prepare a visit request, ask about plans or leave us a question.",
+    demoNotice: "Demo: use test data. This request will not be sent.",
+    privacyLink: "How this demo works",
+    fields: {
+      name: "Name",
+      email: "Email",
+      reason: "Reason",
+      plan: "Plan of interest",
+      planOptional: "optional",
+      planNone: "Not sure yet",
+      message: "Message",
+      messageOptional: "optional",
+      messageHint: "Up to 500 characters.",
+    },
+    reasons: { visita: "Visit", paquetes: "Plans", general: "General question" },
+    submit: "Prepare request",
+    errorsTitle: "Please check these fields:",
+    errors: {
+      required: "This field is required.",
+      tooShort: "Enter at least 2 characters.",
+      tooLong: "The text is too long.",
+      invalidEmail: "Enter an email like name@domain.com.",
+    },
+    summaryTitle: "Request prepared",
+    summaryText: "No data was sent or stored. This is how your request would look:",
+    summaryEdit: "Edit request",
+    summaryReset: "Start over",
+    summaryEmpty: "—",
+    counter: "characters",
+  },
+  footer: {
+    tagline: "Your energy. Your next level.",
+    demo: "PULSO Athletic Club is a fictitious concept created for demonstration. Prices, people, schedules, address and channels do not belong to a real business.",
+    privacy: "Privacy",
+    hours: "Hours",
+    explore: "Explore",
+    credits: "Illustrative concept imagery.",
+  },
+  privacy: {
+    title: "Privacy",
+    updated: "Describes how this demo currently works. It is not a reviewed legal notice.",
+    sections: [
+      {
+        h: "What this site is",
+        p: [
+          "PULSO Athletic Club is a fictitious gym. This site is a demo: there is no business receiving requests, payments or bookings.",
+        ],
+      },
+      {
+        h: "Contact form",
+        p: [
+          "The form asks for name, email, reason, optional plan and optional message. Use test data.",
+          "When you prepare a request, the data is only validated and shown in your browser. It is not sent to any server, it is not stored, and it disappears when you reload or close the page.",
+        ],
+      },
+      {
+        h: "Saved preferences",
+        p: [
+          "If you change the language, your browser saves the preference (localStorage, key “pulso-lang”).",
+        ],
+      },
+      {
+        h: "No cookies or external services",
+        p: [
+          "This site uses no cookies, analytics, external maps or third-party services. Fonts and images are served from the site itself.",
+          "The sample channels (email, phone and WhatsApp) are not connected.",
+        ],
+      },
+    ],
+  },
+  notFound: {
+    title: "This page does not exist",
+    text: "The link may be incomplete. Go back home to keep exploring PULSO.",
+  },
+};
+
+export const dictionaries: Record<Locale, Dictionary> = { es, en };
